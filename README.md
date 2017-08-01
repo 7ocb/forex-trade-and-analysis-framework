@@ -31,10 +31,10 @@ Simulation is performed by just swapping trading backend - this can be backend p
 This allows, for example, next cycle:
 
 1. develop strategy
-2. confirm it works as designed by unit-tests
-3. confirm that it really works by simulating it on almost instant simulation on data from local storage
-4. run it in realtime simulation to see if it behaves as expected in real life
-5. put it into actual trading
+2. confirm _same code_ works as designed by unit-tests
+3. confirm _same code_ really works by simulating it on almost instant simulation on data from local storage
+4. run _same code_ in realtime simulation to see if it behaves as expected in real life
+5. put _this same code_ into actual trading
 
 ### Strategy tests
 
