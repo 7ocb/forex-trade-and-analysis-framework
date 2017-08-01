@@ -1,0 +1,5 @@
+<project>
+  <dependency>../../libs/common</dependency>
+
+  <jar>true</jar>
+</project>

@@ -1,0 +1,7 @@
+<project>
+  <dependency>../../libs/common</dependency>
+  <dependency>../../libs/hub</dependency>
+  <dependency>../../strategies/ppde-simple</dependency>
+
+  <jar>true</jar>
+</project>

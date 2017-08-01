@@ -1,0 +1,42 @@
+#!/bin/bash
+
+SCALA_PATH=$(grep "scala\.home" local.properties | sed -s "s/.*=//")
+
+SCALAC=$SCALA_PATH/bin/scalac
+SCALA=$SCALA_PATH/bin/scala
+
+NC='\033[22;0m'
+BLUE='\033[22;34m'
+RED='\033[22;31m'
+GREEN='\e[0;32m'
+
+function color () {
+    echo -e -n $1
+} 
+
+function die () {
+    color $RED
+    echo "$@"
+    color $NC
+    exit -1
+}
+
+function fail() {
+    color $RED
+    echo "$@"
+    color $NC
+} 
+
+function notify() {
+    color $BLUE
+    echo "=============================================================================="
+    echo "$@"
+    echo "=============================================================================="
+    color $NC
+}
+
+function success() {
+    color $GREEN
+    echo "$@"
+    color $NC
+}

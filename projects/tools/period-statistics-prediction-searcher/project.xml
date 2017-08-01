@@ -1,0 +1,7 @@
+<project>
+  <dependency>../../libs/common</dependency>
+  <dependency>../../libs/prediction</dependency>
+  <dependency>../../libs/paralleling</dependency>
+  
+  <jar>true</jar>
+</project>

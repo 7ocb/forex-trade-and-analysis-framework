@@ -1,0 +1,53 @@
+#!/bin/bash
+
+COMMON_FILES="concurrent/RunLoop.h \
+concurrent/RunLoop.cpp \
+concurrent/RunLoopUser.h \
+concurrent/RunLoopUser.cpp \
+platform/platform.cpp \
+platform/platform.h \
+platform/Socket.h \
+platform/Monitor.h \
+platform/Thread.h \
+platform/Thread.cpp \
+io/InputDataBuffer.h \
+io/InputDataBuffer.cpp \
+io/OutputDataBuffer.h \
+io/OutputDataBuffer.cpp \
+connector/HubInteraction.h \
+connector/HubInteraction.cpp \
+connector/MTTicksSink.h \
+connector/MTTicksSink.cpp \
+connector/MTTradeConnector.h \
+connector/MTTradeConnector.cpp \
+connector/MTConnector.h \
+connector/MTConnector.cpp \
+connector/Trade.h \
+connector/Trade.cpp \
+connector/TradesSet.h \
+connector/TradesSet.cpp \
+common.h \
+protocol.h \
+protocol.cpp \
+logger/logger.h \
+logger/logger.cpp \
+types.h \
+types.cpp \
+Option.h \
+connection/ConnectionHandle.h \
+connection/ConnectionHandle.cpp \
+connection/ConnectionState.h \
+connection/ConnectionState.cpp \
+connection/Pinger.h \
+connection/Pinger.cpp \
+connection/StateClosed.h \
+connection/StateDisconnected.h \
+connection/StateDisconnected.cpp \
+connection/StateConnecting.h \
+connection/StateConnecting.cpp \
+connection/StateConnected.h \
+connection/StateConnected.cpp \
+connection/StateConnectFailed.h \
+connection/StateConnectFailed.cpp "
+
+COMMON_OPTIONS="-std=c++11 -Wall -Iconnection -I. -Iplatform -Iio -Iconnector -Ilogger -Iconcurrent"

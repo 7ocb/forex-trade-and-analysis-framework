@@ -1,0 +1,14 @@
+#!/bin/bash
+
+WIN_FILES="platform/win/WinPlatform.h \
+platform/win/WinPlatform.cpp \
+platform/win/FairMonitor.h \
+platform/win/FairMonitor.cpp \
+platform/win/WinMonitor.h \
+platform/win/WinMonitor.cpp \
+platform/win/WinThread.h \
+platform/win/WinThread.cpp \
+platform/win/WinSocket.h \
+platform/win/WinSocket.cpp"
+
+WIN_OPTIONS="-Iplatform/win -l ws2_32 -static-libstdc++ -static-libgcc -static"

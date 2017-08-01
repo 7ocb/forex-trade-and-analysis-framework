@@ -1,0 +1,40 @@
+LIBRARY dll
+EXPORTS
+    CalibrateStrings
+
+    SendTickToSink  
+    CreateTicksSink 
+    FreeTicksSink   
+
+    LogTradeConnectorMessage
+    TradeMessage
+    
+    CreateTradeConnector
+    FreeTradeConnector
+
+    UpdateBalance
+    UpdateEquity
+
+    StartNextTradesIteration
+    ShiftToNextTrade
+
+    TradeGetValue
+    TradeGetType
+    TradeGetRequestedDelay
+    TradeGetRequestedStop
+    TradeGetRequestedTp
+    TradeSetBestSetDelay
+    TradeSetBestSetStop
+    TradeSetBestSetTp
+    TradeGetBestSetDelay
+    TradeGetBestSetStop
+    TradeGetBestSetTp
+    TradeGetMtId
+    TradeSetMtId
+    TradeGetIsWantsClose
+    FreeTrade
+    TradeGetIsOpened
+    TradeSetIsOpened
+
+    TradeNotifyOpened
+    TradeNotifyClosed

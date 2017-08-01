@@ -1,0 +1,79 @@
+#!/bin/bash
+
+MAIN_LIB=../../dist/lib/tas.jar
+
+pushd .. > /dev/null
+
+. ./config
+
+notify "Building project"
+
+ant || exit 1
+
+
+
+
+popd > /dev/null
+
+function run_test_program () {
+    time $SCALA -classpath $MAIN_LIB:bin TestMain
+} 
+
+function run_test () {
+    test="$1"
+
+    if pushd "$test" > /dev/null ; then 
+        
+        notify "Running test: "$test
+
+        rm -rf bin
+        mkdir bin
+
+        pushd src > /dev/null
+
+        if $SCALAC -d ../bin -classpath ../$MAIN_LIB -deprecation $(find -iname *.scala) ; then
+
+            pushd .. > /dev/null
+
+            if [ -x "prepare" ] ; then ./prepare > /dev/null ; fi
+
+            
+            if run_test_program ; then
+                if [ -x "postcheck" ] ; then
+                    if ./postcheck > /dev/null ; then
+                        success "Test "$test" succeed"
+                    else
+                        fail "Test "$test" postcheck failed"
+                    fi
+                else 
+                    success "Test "$test" succeed"
+                fi
+            else
+                fail "Test "$test" failed"
+            fi
+
+            if [ -x "cleanup" ] ; then ./cleanup > /dev/null ; fi
+
+            popd > /dev/null
+            
+        else
+            fail "Failed to build test code"
+        fi
+
+        popd > /dev/null
+        
+        popd > /dev/null
+    else
+        fail "Directory for test" $test "not found"
+    fi
+} 
+
+if [ "$1" != "" ] ; then
+    run_test "$1"
+else
+    for test in $(find -mindepth 1 -maxdepth 1 -type d | sort ) ; do
+        run_test "$test"
+    done
+fi
+    
+

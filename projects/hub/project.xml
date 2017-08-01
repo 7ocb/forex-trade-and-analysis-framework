@@ -1,0 +1,5 @@
+<project>
+  <dependency>../libs/hub</dependency>
+
+  <jar>true</jar>
+</project>

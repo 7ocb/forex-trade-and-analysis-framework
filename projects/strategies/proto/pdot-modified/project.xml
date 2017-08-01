@@ -1,0 +1,6 @@
+<project>
+  <dependency>../../../libs/common</dependency>
+  <!-- <dependency>../../../libs/hub</dependency> -->
+
+  <jar>true</jar>
+</project>

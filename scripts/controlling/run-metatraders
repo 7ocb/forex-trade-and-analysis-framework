@@ -1,0 +1,21 @@
+#!/bin/bash
+
+LINKS_DIR="$1"
+
+if [ "$LINKS_DIR" == "" ] ; then
+    echo "usage: run-metatraders dir"
+    echo "where dir is directory with links to metatrader root directories."
+fi
+
+
+for link in "$LINKS_DIR"/* ; do
+
+    if [ -h "$link" ] ; then
+        
+        pushd "$link"
+        wine terminal.exe > mt-run.log 2>&1 &
+        disown
+        popd
+        
+    fi
+done

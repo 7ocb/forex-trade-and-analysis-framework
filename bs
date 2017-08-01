@@ -1,0 +1,60 @@
+#!/bin/bash
+
+NC='\033[22;0m'
+BLUE='\033[22;34m'
+RED='\033[22;31m'
+GREEN='\e[0;32m'
+
+function color () {
+    echo -e -n $1
+} 
+
+function die () {
+    color $RED
+    echo "$@"
+    color $NC
+    exit -1
+}
+
+function fail() {
+    color $RED
+    echo "$@"
+    color $NC
+} 
+
+function notify() {
+    color $BLUE
+    echo "$@"
+    color $NC
+}
+
+function success() {
+    color $GREEN
+    echo "$@"
+    color $NC
+}
+
+function localProperty() {
+    property=$1
+
+    cat $ROOT/local.properties | sed "s/#.*//" | grep $property= | sed "s/$property=//"
+}
+
+ROOT=$(dirname $0)
+
+notify "Project root:" $ROOT
+
+SCALA_HOME=$(localProperty "scala.home")
+notify "Scala home detected:" $SCALA_HOME
+
+if [ "$1" == "bootstrap" ] || [ ! -d $ROOT/build/bin ] ; then
+    notify "Performing bootstrap: rebuilding build system"
+
+    rm -rf "$ROOT/build/bin" 2>/dev/null
+    mkdir $ROOT/build/bin
+    $SCALA_HOME/bin/scalac -d "$ROOT/build/bin" $(find "$ROOT/build/src" -iname "*.scala") || die "Failed to build build system"
+
+    success "Build system sucessfully rebuilt."
+fi
+
+nice "$SCALA_HOME"/bin/scala -cp "$ROOT/build/bin" BuildSystem root=$ROOT "$@"

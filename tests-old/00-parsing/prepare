@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rm -rf out
+mkdir out
+cp data/source.txt out
